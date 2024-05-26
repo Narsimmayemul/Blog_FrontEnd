@@ -55,7 +55,7 @@ const handleComments = (id)=>{
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: Failed to fetch posts</div>;
     if (!isAuthenticated.user) return <div>Please log in to view the posts.</div>;
-    console.log(posts);
+    // console.log(posts);
     return (
         <div className={styles.container}>
             <h1 className={styles.title}>Home Page</h1>

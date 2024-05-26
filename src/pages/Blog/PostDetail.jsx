@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostContext from '../../contexts/PostContext';
 import axios from 'axios';
+import moment from 'moment';
+
 
 const PostDetail = () => {
   const { id } = useParams();
@@ -34,7 +36,7 @@ const PostDetail = () => {
     setComment('');
   };
 
-
+console.log(com);
 //   /api/posts/:postId/comments
   return currentPost ? (
     <div style={{width:'100%' , display:'flex',flexDirection:'column' , marginLeft:'150px' , justifyContent:'center'}}>
@@ -46,7 +48,12 @@ const PostDetail = () => {
       <h3>Comments</h3>
       <ul>
         {com?.map((comment) => (
-          <li key={comment._id}>{comment.comment}</li>
+            <div key={comment._id}>
+
+        <li>
+            {comment.comment} ({moment(comment.createdAt).format('MMMM Do, YYYY h:mm A')})
+        </li>
+            </div>
         ))}
       </ul>
       <form onSubmit={handleCommentSubmit}>
