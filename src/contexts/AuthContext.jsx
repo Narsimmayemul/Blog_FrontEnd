@@ -24,10 +24,10 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = async (username, email, password) => {
-    await api.post('/register', { username, email, password });
-    // history.push('/login');
+    const response = await api.post('/register', { username, email, password });
+    saveToken(response.data.token);
+    setUser({ token: response.data.token });
   };
-
   const logout = () => {
     removeToken();
     setUser(null);
