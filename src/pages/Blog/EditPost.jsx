@@ -6,7 +6,7 @@ import styles from './EditPost.module.css';
 
 const EditPost = () => {
   const { id } = useParams();
-  console.log(id)
+//   console.log(id)
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
   const [post, setPost] = useState({ title: '', content: '' });
@@ -33,14 +33,17 @@ const EditPost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log(`Updating post with ID: ${id}`);
       await api.put(`/posts/${id}`, post, {
         headers: { Authorization: `Bearer ${user.token}` },
       });
       navigate('/');
     } catch (err) {
+      console.log(err);
       setError('Failed to update the post.');
     }
   };
+  
 
   return (
     <div className={styles.container}>
